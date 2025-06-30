@@ -31,10 +31,12 @@ export default function BankMentionsBarChart() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const chartData = Object.entries(bankMentions).map(([key, value]) => ({
-    name: key.charAt(0).toUpperCase() + key.slice(1),
-    value: parseFloat(value),
-  }));
+  const chartData = Object.entries(bankMentions)
+    .filter(([key]) => key && BANK_LABELS[key]) // filter out invalid keys
+    .map(([key, value]) => ({
+      name: BANK_LABELS[key],
+      value: parseFloat(value),
+    }));
 
   useEffect(() => {
     let ignore = false;
