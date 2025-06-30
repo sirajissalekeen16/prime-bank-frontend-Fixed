@@ -67,6 +67,7 @@ export default function BankMentionsBarChart() {
     };
   }, []);
 
+
   let content = null;
 
   if (loading) {
@@ -81,25 +82,30 @@ export default function BankMentionsBarChart() {
     );
   } else {
     content = (
-      <ResponsiveContainer width="100%" height={300}>
-        <BarChart
-          data={chartData}
-          margin={{ top: 10, right: 20, left: 0, bottom: 30 }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" tick={{ fontSize: 12 }} />
-          <YAxis allowDecimals={false} />
-          <Tooltip />
-          <Bar dataKey="value" radius={[4, 4, 0, 0]}>
-            {chartData.map((_, index) => (
-              <Cell
-                key={`cell-${index}`}
-                fill={COLORS[index % COLORS.length]}
-              />
-            ))}
-          </Bar>
-        </BarChart>
-      </ResponsiveContainer>
+      <>
+        <div style={{ marginBottom: 12, fontWeight: 500 }}>
+          Total Banks Mentioned: {chartData.length}
+        </div>
+        <ResponsiveContainer width="100%" height={300}>
+          <BarChart
+            data={chartData}
+            margin={{ top: 10, right: 20, left: 0, bottom: 30 }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="name" tick={{ fontSize: 12 }} />
+            <YAxis allowDecimals={false} />
+            <Tooltip />
+            <Bar dataKey="value" radius={[4, 4, 0, 0]}>
+              {chartData.map((_, index) => (
+                <Cell
+                  key={`cell-${index}`}
+                  fill={COLORS[index % COLORS.length]}
+                />
+              ))}
+            </Bar>
+          </BarChart>
+        </ResponsiveContainer>
+      </>
     );
   }
 
