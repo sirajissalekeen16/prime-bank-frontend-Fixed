@@ -84,7 +84,7 @@ export default function BankMentionsBarChart() {
     content = (
       <>
         <div style={{ marginBottom: 12, fontWeight: 500 }}>
-          Total Banks Mentioned: {chartData.length}
+          Total Banks Mentioned: {chartData.reduce((sum, item) => sum + item.value, 0)}
         </div>
         <ResponsiveContainer width="100%" height={300}>
           <BarChart
